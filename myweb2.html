@@ -49,7 +49,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     list-style: none;
 }
 
@@ -228,93 +228,6 @@ nav {
     margin-top: 4px;
 }
 
-/* ================= FORM & INPUT STYLES ================= */
-.form-container {
-    max-width: 600px;
-    background: #121212;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 16px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 6px;
-    font-weight: 600;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px 14px;
-    background: #181818;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 6px;
-    color: #fff;
-    font-size: 13px;
-    outline: none;
-}
-
-.form-control:focus {
-    border-color: #e50914;
-}
-
-textarea.form-control {
-    resize: vertical;
-    min-height: 80px;
-}
-
-.btn-submit {
-    background: #e50914;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 13px;
-}
-
-.btn-submit:hover {
-    background: #b80710;
-}
-
-.request-card {
-    background: #121212;
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 14px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.request-card h4 {
-    font-size: 14px;
-    color: #fff;
-}
-
-.request-card p {
-    font-size: 12px;
-    color: #888;
-    margin-top: 4px;
-}
-
-.request-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    background: rgba(229, 9, 20, 0.2);
-    color: #e50914;
-    font-size: 10px;
-    border-radius: 4px;
-    margin-left: 8px;
-}
-
 /* ================= ACCOUNT VIEW ================= */
 .profile-card {
     background: #121212;
@@ -471,17 +384,16 @@ textarea.form-control {
     }
 
     .nav-links {
-        gap: 10px;
+        gap: 15px;
     }
 
     .nav-links a {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .search-box {
-        width: 80px;
-        font-size: 10px;
-        padding: 5px 8px;
+        width: 100px;
+        font-size: 11px;
     }
 
     .hero {
@@ -513,8 +425,6 @@ textarea.form-control {
     <ul class="nav-links">
         <li><a id="nav-home" class="active" onclick="switchPage('home')">Home</a></li>
         <li><a id="nav-movies" onclick="switchPage('movies')">Movies</a></li>
-        <li><a id="nav-request" onclick="switchPage('request')">Request</a></li>
-        <li><a id="nav-upload" onclick="switchPage('upload')">Upload</a></li>
         <li><a id="nav-account" onclick="switchPage('account')">Account</a></li>
     </ul>
 
@@ -554,97 +464,7 @@ textarea.form-control {
     </div>
 </div>
 
-<!-- PAGE 3: REQUEST (SEMUA PENGGUNA) -->
-<div id="page-request" class="page">
-    <div class="section" style="padding-top: 20px;">
-        <div class="section-title">Request Film</div>
-        <p style="font-size: 12px; color: #aaa; margin-bottom: 20px;">Film favoritmu belum ada? Kirimkan permintaan judul film di bawah ini.</p>
-        
-        <div class="form-container">
-            <form onsubmit="handleRequestSubmit(event)">
-                <div class="form-group">
-                    <label for="reqTitle">Judul Film / Serial</label>
-                    <input type="text" id="reqTitle" class="form-control" placeholder="Contoh: Interstellar" required>
-                </div>
-                <div class="form-group">
-                    <label for="reqGenre">Genre / Tahun (Opsional)</label>
-                    <input type="text" id="reqGenre" class="form-control" placeholder="Contoh: Sci-Fi (2014)">
-                </div>
-                <div class="form-group">
-                    <label for="reqNote">Catatan Tambahan</label>
-                    <textarea id="reqNote" class="form-control" placeholder="Sebutkan alasan atau detail khusus jika ada..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Kirim Request</button>
-            </form>
-        </div>
-
-        <div class="section-title">Daftar Request Pengguna</div>
-        <div id="requestListContainer">
-            <p style="color:#666; font-size:12px;" id="emptyRequest">Belum ada request film.</p>
-        </div>
-    </div>
-</div>
-
-<!-- PAGE 4: UPLOAD (KHUSUS ADMIN) -->
-<div id="page-upload" class="page">
-    <div class="section" style="padding-top: 20px;">
-        <!-- TAMPILAN JIKA BELUM TERVERIFIKASI -->
-        <div id="adminTokenSection" class="form-container">
-            <div class="section-title">Verifikasi Admin</div>
-            <p style="font-size: 12px; color: #aaa; margin-bottom: 16px;">Masukkan token admin untuk mengakses halaman unggah film.</p>
-            <div class="form-group">
-                <label for="adminTokenInput">Token Sleeptime Admin</label>
-                <input type="password" id="adminTokenInput" class="form-control" placeholder="Masukkan token...">
-            </div>
-            <button class="btn-submit" onclick="verifyAdminToken()">Verifikasi Token</button>
-        </div>
-
-        <!-- FORM UPLOAD (TERSEMBUNYI SEMENTARA UNTUK ADMIN) -->
-        <div id="adminUploadSection" style="display: none;">
-            <div class="section-title">Upload Film Baru</div>
-            <div class="form-container">
-                <form onsubmit="handleUploadSubmit(event)">
-                    <div class="form-group">
-                        <label for="movieTitle">Judul Film</label>
-                        <input type="text" id="movieTitle" class="form-control" placeholder="Judul Film" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="movieYear">Tahun Rilis</label>
-                        <input type="number" id="movieYear" class="form-control" placeholder="2026" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="movieGenre">Genre</label>
-                        <select id="movieGenre" class="form-control" required>
-                            <option value="Sci-Fi">Sci-Fi</option>
-                            <option value="Action">Action</option>
-                            <option value="Drama">Drama</option>
-                            <option value="Horror">Horror</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="movieRating">Rating (0 - 10)</label>
-                        <input type="text" id="movieRating" class="form-control" placeholder="8.5" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="movieDesc">Deskripsi Film</label>
-                        <textarea id="movieDesc" class="form-control" placeholder="Sinopsis singkat..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="moviePoster">URL Poster (Gambar)</label>
-                        <input type="url" id="moviePoster" class="form-control" placeholder="https://..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="movieVideo">URL Video (.mp4)</label>
-                        <input type="url" id="movieVideo" class="form-control" placeholder="https://..." required>
-                    </div>
-                    <button type="submit" class="btn-submit">Tambahkan Film</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PAGE 5: ACCOUNT -->
+<!-- PAGE 3: ACCOUNT -->
 <div id="page-account" class="page">
     <div class="section" style="padding-top: 20px;">
         <div class="profile-card">
@@ -723,9 +543,7 @@ const movies = [
 ];
 
 let watchHistory = [];
-let requestData = [];
 let currentGenre = "All";
-let isAdminAuthenticated = false;
 
 // Pindah Halaman SPA
 function switchPage(pageName) {
@@ -765,4 +583,77 @@ function renderMovies() {
         // Render ke Home (Rekomendasi)
         homeGrid.innerHTML += cardHTML;
 
-        // Render ke Halaman Movies (De
+        // Render ke Halaman Movies (Dengan Filter)
+        if (matchesGenre && matchesSearch) {
+            moviesGrid.innerHTML += cardHTML;
+        }
+    });
+}
+
+// Filter Genre
+function filterGenre(genre, element) {
+    currentGenre = genre;
+    document.querySelectorAll('.genre-tag').forEach(tag => tag.classList.remove('active'));
+    element.classList.add('active');
+    renderMovies();
+}
+
+// Filter Pencarian
+function filterMovies() {
+    renderMovies();
+}
+
+// Putar Film + Modal Detail + Masuk Riwayat
+function playMovie(id) {
+    const movie = movies.find(m => m.id === id);
+    if (!movie) return;
+
+    document.getElementById('modalTitle').textContent = movie.title;
+    document.getElementById('modalMeta').textContent = `${movie.year} • ${movie.genre} • ★ ${movie.rating}`;
+    document.getElementById('modalDesc').textContent = movie.desc;
+
+    const player = document.getElementById('videoPlayer');
+    player.src = movie.videoUrl;
+    
+    document.getElementById('movieModal').classList.add('active');
+    player.play();
+
+    // Tambah ke riwayat tontonan
+    if (!watchHistory.some(h => h.id === movie.id)) {
+        watchHistory.unshift(movie);
+        renderHistory();
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('movieModal');
+    const player = document.getElementById('videoPlayer');
+    player.pause();
+    player.src = '';
+    modal.classList.remove('active');
+}
+
+// Render Riwayat Tontonan
+function renderHistory() {
+    const historyContainer = document.getElementById('historyList');
+    if (watchHistory.length === 0) return;
+
+    historyContainer.innerHTML = '';
+    watchHistory.forEach(m => {
+        historyContainer.innerHTML += `
+            <div class="history-item">
+                <img src="${m.poster}">
+                <div class="history-info">
+                    <h4>${m.title}</h4>
+                    <p>${m.genre} • Ditonton baru saja</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Load Awal
+renderMovies();
+</script>
+</body>
+</html>
