@@ -228,7 +228,7 @@ nav {
     margin-top: 4px;
 }
 
-/* ================= ACCOUNT VIEW ================= */
+/* ================= ACCOUNT VIEW & FORM STYLES ================= */
 .profile-card {
     background: #121212;
     border: 1px solid rgba(255,255,255,0.08);
@@ -254,12 +254,96 @@ nav {
 
 .user-details h3 {
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.owner-badge {
+    background: #e50914;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .user-details p {
     font-size: 12px;
     color: #777;
     margin-top: 4px;
+}
+
+.form-card {
+    background: #121212;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.form-input, .form-textarea {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+    border-color: #e50914;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-submit {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.btn-submit:hover {
+    background: #b80710;
+}
+
+.status-msg {
+    margin-top: 12px;
+    font-size: 13px;
+    display: none;
 }
 
 .history-list {
@@ -384,16 +468,17 @@ nav {
     }
 
     .nav-links {
-        gap: 15px;
+        gap: 12px;
     }
 
     .nav-links a {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .search-box {
-        width: 100px;
-        font-size: 11px;
+        width: 80px;
+        font-size: 10px;
+        padding: 5px 10px;
     }
 
     .hero {
@@ -408,6 +493,14 @@ nav {
     .movie-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: span 1;
     }
 
     .section {
@@ -426,6 +519,7 @@ nav {
         <li><a id="nav-home" class="active" onclick="switchPage('home')">Home</a></li>
         <li><a id="nav-movies" onclick="switchPage('movies')">Movies</a></li>
         <li><a id="nav-account" onclick="switchPage('account')">Account</a></li>
+        <li><a id="nav-request" onclick="switchPage('request')">Request</a></li>
     </ul>
 
     <input type="text" class="search-box" id="searchInput" placeholder="Cari film..." oninput="filterMovies()">
@@ -464,20 +558,101 @@ nav {
     </div>
 </div>
 
-<!-- PAGE 3: ACCOUNT -->
+<!-- PAGE 3: ACCOUNT (KHUSUS OWNER/ADMIN DILENGKAPI FORM UPLOAD) -->
 <div id="page-account" class="page">
     <div class="section" style="padding-top: 20px;">
         <div class="profile-card">
             <div class="avatar">V</div>
             <div class="user-details">
-                <h3>Vodka Admin</h3>
+                <h3>Vodka Admin <span class="owner-badge">Owner</span></h3>
                 <p>Member Premium • vodk4aa@sleptime.tv</p>
             </div>
+        </div>
+
+        <!-- UPLOAD FILM KHUSUS OWNER -->
+        <div class="section-title">Upload Film Baru (Owner Area)</div>
+        <div class="form-card">
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Judul Film</label>
+                        <input type="text" id="upTitle" class="form-input" placeholder="Contoh: Avatar 3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tahun Rilis</label>
+                        <input type="text" id="upYear" class="form-input" placeholder="Contoh: 2026" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <select id="upGenre" class="form-input" required style="color:white; background:#1a1a1a;">
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Animation">Animation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating (1.0 - 10.0)</label>
+                        <input type="text" id="upRating" class="form-input" placeholder="Contoh: 8.8" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>URL Poster (Link Gambar)</label>
+                        <input type="url" id="upPoster" class="form-input" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+                    <div class="form-group full">
+                        <label>URL Video Stream (Link MP4/WebM)</label>
+                        <input type="url" id="upVideo" class="form-input" placeholder="https://domain.com/video.mp4" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>Admin Access Key / Token</label>
+                        <input type="password" id="adminToken" class="form-input" placeholder="Ketik token rahasia (sleeptimeadmin)" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>Sinopsis / Deskripsi Film</label>
+                        <textarea id="upDesc" class="form-textarea" placeholder="Tuliskan cerita singkat tentang film ini..." required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Upload Film ke SLEEPTIME</button>
+            </form>
+            <div id="uploadStatus" class="status-msg"></div>
         </div>
 
         <div class="section-title">Riwayat Tontonan</div>
         <div class="history-list" id="historyList">
             <p style="color:#666; font-size:12px;" id="emptyHistory">Belum ada film yang ditonton.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: REQUEST FILM (UNTUK SEMUA PENGGUNA) -->
+<div id="page-request" class="page">
+    <div class="section" style="padding-top: 20px;">
+        <div class="section-title">Request Film</div>
+        <div class="form-card">
+            <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Film favoritmu belum ada di SLEEPTIME? Kirimkan permintaanmu di bawah ini!</p>
+            <form id="requestForm" onsubmit="handleRequest(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Judul Film / Serial</label>
+                        <input type="text" id="reqTitle" class="form-input" placeholder="Masukkan judul film..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tahun Rilis (Opsional)</label>
+                        <input type="text" id="reqYear" class="form-input" placeholder="Contoh: 2024">
+                    </div>
+                    <div class="form-group full">
+                        <label>Genre / Kategori</label>
+                        <input type="text" id="reqGenre" class="form-input" placeholder="Contoh: Action, Anime, Horror...">
+                    </div>
+                    <div class="form-group full">
+                        <label>Pesan / Alasan Request</label>
+                        <textarea id="reqMessage" class="form-textarea" placeholder="Tuliskan catatan tambahan jika ada..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Kirim Request Film</button>
+            </form>
+            <div id="requestStatus" class="status-msg"></div>
         </div>
     </div>
 </div>
@@ -593,68 +768,4 @@ function renderMovies() {
 // Filter Genre
 function filterGenre(genre, element) {
     currentGenre = genre;
-    document.querySelectorAll('.genre-tag').forEach(tag => tag.classList.remove('active'));
-    element.classList.add('active');
-    renderMovies();
-}
-
-// Filter Pencarian
-function filterMovies() {
-    renderMovies();
-}
-
-// Putar Film + Modal Detail + Masuk Riwayat
-function playMovie(id) {
-    const movie = movies.find(m => m.id === id);
-    if (!movie) return;
-
-    document.getElementById('modalTitle').textContent = movie.title;
-    document.getElementById('modalMeta').textContent = `${movie.year} • ${movie.genre} • ★ ${movie.rating}`;
-    document.getElementById('modalDesc').textContent = movie.desc;
-
-    const player = document.getElementById('videoPlayer');
-    player.src = movie.videoUrl;
-    
-    document.getElementById('movieModal').classList.add('active');
-    player.play();
-
-    // Tambah ke riwayat tontonan
-    if (!watchHistory.some(h => h.id === movie.id)) {
-        watchHistory.unshift(movie);
-        renderHistory();
-    }
-}
-
-function closeModal() {
-    const modal = document.getElementById('movieModal');
-    const player = document.getElementById('videoPlayer');
-    player.pause();
-    player.src = '';
-    modal.classList.remove('active');
-}
-
-// Render Riwayat Tontonan
-function renderHistory() {
-    const historyContainer = document.getElementById('historyList');
-    if (watchHistory.length === 0) return;
-
-    historyContainer.innerHTML = '';
-    watchHistory.forEach(m => {
-        historyContainer.innerHTML += `
-            <div class="history-item">
-                <img src="${m.poster}">
-                <div class="history-info">
-                    <h4>${m.title}</h4>
-                    <p>${m.genre} • Ditonton baru saja</p>
-                </div>
-            </div>
-        `;
-    });
-}
-
-// Load Awal
-renderMovies();
-</script>
-</body>
-          </html>
-  
+    document.querySelectorAll('.genre-tag').forEach(
