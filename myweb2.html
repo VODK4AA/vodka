@@ -29,8 +29,8 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
-    z-index: 1000;
+    padding: 0 12px;
+    z-index: 9999;
     background: #0d0d0d;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
@@ -50,12 +50,11 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     list-style: none;
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
-    -ms-overflow-style: none;
     padding: 5px 0;
 }
 
@@ -66,36 +65,34 @@ nav {
 .nav-links a {
     color: #aaa;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    transition: 0.2s;
     padding: 6px 10px;
     border-radius: 4px;
     display: inline-block;
 }
 
-.nav-links a:hover,
 .nav-links a.active {
     color: #fff;
-    background: rgba(255,255,255,0.1);
+    background: #e50914;
 }
 
 .search-box {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 20px;
-    padding: 6px 12px;
+    padding: 5px 10px;
     color: white;
     outline: none;
     font-size: 11px;
-    width: 110px;
+    width: 100px;
     flex-shrink: 0;
 }
 
 /* ================= VIEWS (PAGES) ================= */
 .page {
-    display: none;
-    padding-top: 60px;
+    display: none !important;
+    padding-top: 65px;
     min-height: 100vh;
 }
 
@@ -105,19 +102,19 @@ nav {
 
 /* ================= HOME VIEW ================= */
 .hero {
-    height: 380px;
+    height: 350px;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 25px 5%;
+    padding: 20px 4%;
     background: linear-gradient(0deg, #080808 10%, rgba(8,8,8,0.5) 60%, rgba(8,8,8,0.8) 100%),
-                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80") center/cover #1a1a1a;
-    border-radius: 0 0 16px 16px;
+                url("https://picsum.photos/id/1018/1000/600") center/cover #1a1a1a;
+    border-radius: 0 0 12px 12px;
     margin-bottom: 25px;
 }
 
 .hero-content {
-    max-width: 550px;
+    max-width: 500px;
     z-index: 2;
 }
 
@@ -133,7 +130,7 @@ nav {
 }
 
 .hero h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 8px;
     line-height: 1.1;
 }
@@ -142,22 +139,22 @@ nav {
     color: #ccc;
     font-size: 12px;
     line-height: 1.4;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 }
 
 .btn-play {
     background: #fff;
     color: #000;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 18px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .section {
-    padding: 0 4% 40px;
+    padding: 0 4% 30px;
 }
 
 .section-title {
@@ -191,15 +188,21 @@ nav {
     white-space: nowrap;
 }
 
-.genre-tag.active, .genre-tag:hover {
+.genre-tag.active {
     background: #fff;
     color: #000;
 }
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+}
+
+@media (min-width: 600px) {
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
 }
 
 .movie-card {
@@ -207,7 +210,7 @@ nav {
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .poster-box {
@@ -215,7 +218,6 @@ nav {
     aspect-ratio: 2/3;
     background: #222;
     position: relative;
-    overflow: hidden;
 }
 
 .movie-card img {
@@ -243,35 +245,32 @@ nav {
     margin-top: 3px;
 }
 
-/* ================= ACCOUNT & FORM STYLES ================= */
+/* ================= ACCOUNT & FORMS ================= */
 .profile-card {
     background: #121212;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 .avatar {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #e50914;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .user-details h3 {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 15px;
 }
 
 .owner-badge {
@@ -280,50 +279,43 @@ nav {
     padding: 2px 6px;
     border-radius: 8px;
     text-transform: uppercase;
-    font-weight: bold;
 }
 
 .user-details p {
     font-size: 11px;
     color: #777;
-    margin-top: 2px;
 }
 
 .form-card {
     background: #121212;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
+    padding: 16px;
+    margin-bottom: 20px;
 }
 
 .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 12px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-}
-
-.form-group.full {
-    grid-column: span 2;
+    gap: 4px;
 }
 
 .form-group label {
     font-size: 11px;
     color: #aaa;
-    font-weight: 600;
 }
 
 .form-input, .form-textarea {
     background: #1a1a1a;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 8px 10px;
     color: white;
     font-size: 12px;
     outline: none;
@@ -331,14 +323,14 @@ nav {
 
 .form-textarea {
     resize: vertical;
-    min-height: 70px;
+    min-height: 60px;
 }
 
 .btn-submit {
     background: #e50914;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
@@ -361,7 +353,7 @@ nav {
 .history-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: #121212;
     padding: 8px;
     border-radius: 6px;
@@ -375,13 +367,12 @@ nav {
 }
 
 .history-info h4 {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .history-info p {
     font-size: 10px;
     color: #777;
-    margin-top: 2px;
 }
 
 /* ================= MODAL MOVIE DETAIL ================= */
@@ -389,7 +380,7 @@ nav {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.9);
-    z-index: 2000;
+    z-index: 10000;
     display: none;
     align-items: center;
     justify-content: center;
@@ -403,7 +394,7 @@ nav {
 .modal-content {
     background: #121212;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -412,14 +403,14 @@ nav {
 
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 12px;
+    top: 8px;
+    right: 10px;
     background: rgba(0,0,0,0.7);
     border: none;
     color: white;
-    font-size: 18px;
-    width: 30px;
-    height: 30px;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
@@ -437,18 +428,18 @@ nav {
 }
 
 .modal-body {
-    padding: 15px;
+    padding: 12px;
 }
 
 .modal-title {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 4px;
 }
 
 .modal-meta {
     font-size: 11px;
     color: #aaa;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .modal-desc {
@@ -456,32 +447,23 @@ nav {
     color: #ccc;
     line-height: 1.4;
 }
-
-@media (max-width: 600px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    .form-group.full {
-        grid-column: span 1;
-    }
-}
 </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo" onclick="switchPage('home', event)">SLEEP<span>TIME</span></div>
+    <div class="logo" onclick="switchPage('home')">SLEEP<span>TIME</span></div>
     
     <ul class="nav-links">
-        <li><a id="nav-home" class="active" href="#" onclick="switchPage('home', event)">Home</a></li>
-        <li><a id="nav-movies" href="#" onclick="switchPage('movies', event)">Movies</a></li>
-        <li><a id="nav-account" href="#" onclick="switchPage('account', event)">Account</a></li>
-        <li><a id="nav-request" href="#" onclick="switchPage('request', event)">Request</a></li>
-        <li><a id="nav-upload" href="#" onclick="switchPage('upload', event)">Upload</a></li>
+        <li><a id="nav-home" class="active" href="javascript:void(0)" onclick="switchPage('home')">Home</a></li>
+        <li><a id="nav-movies" href="javascript:void(0)" onclick="switchPage('movies')">Movies</a></li>
+        <li><a id="nav-account" href="javascript:void(0)" onclick="switchPage('account')">Account</a></li>
+        <li><a id="nav-request" href="javascript:void(0)" onclick="switchPage('request')">Request</a></li>
+        <li><a id="nav-upload" href="javascript:void(0)" onclick="switchPage('upload')">Upload</a></li>
     </ul>
 
-    <input type="text" class="search-box" id="searchInput" placeholder="Cari film..." oninput="filterMovies()">
+    <input type="text" class="search-box" id="searchInput" placeholder="Cari..." oninput="filterMovies()">
 </nav>
 
 <!-- PAGE 1: HOME -->
@@ -503,7 +485,7 @@ nav {
 
 <!-- PAGE 2: MOVIES -->
 <div id="page-movies" class="page">
-    <div class="section" style="padding-top: 15px;">
+    <div class="section" style="padding-top: 10px;">
         <div class="genres">
             <div class="genre-tag active" onclick="filterGenre('All', this)">All</div>
             <div class="genre-tag" onclick="filterGenre('Sci-Fi', this)">Sci-Fi</div>
@@ -519,7 +501,7 @@ nav {
 
 <!-- PAGE 3: ACCOUNT -->
 <div id="page-account" class="page">
-    <div class="section" style="padding-top: 15px;">
+    <div class="section" style="padding-top: 10px;">
         <div class="profile-card">
             <div class="avatar">V</div>
             <div class="user-details">
@@ -537,27 +519,27 @@ nav {
 
 <!-- PAGE 4: REQUEST FILM -->
 <div id="page-request" class="page">
-    <div class="section" style="padding-top: 15px;">
+    <div class="section" style="padding-top: 10px;">
         <div class="section-title">Request Film</div>
         <div class="form-card">
-            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Film favoritmu belum ada di SLEEPTIME? Kirimkan permintaanmu di bawah ini!</p>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Kirimkan permintaan film favoritmu di sini!</p>
             <form id="requestForm" onsubmit="handleRequest(event)">
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Judul Film / Serial</label>
-                        <input type="text" id="reqTitle" class="form-input" placeholder="Masukkan judul film..." required>
+                        <input type="text" id="reqTitle" class="form-input" placeholder="Masukkan judul..." required>
                     </div>
                     <div class="form-group">
                         <label>Tahun Rilis (Opsional)</label>
                         <input type="text" id="reqYear" class="form-input" placeholder="Contoh: 2024">
                     </div>
-                    <div class="form-group full">
+                    <div class="form-group">
                         <label>Genre / Kategori</label>
-                        <input type="text" id="reqGenre" class="form-input" placeholder="Contoh: Action, Anime, Horror...">
+                        <input type="text" id="reqGenre" class="form-input" placeholder="Action, Horror, Anime...">
                     </div>
-                    <div class="form-group full">
-                        <label>Pesan / Alasan Request</label>
-                        <textarea id="reqMessage" class="form-textarea" placeholder="Tuliskan catatan tambahan jika ada..."></textarea>
+                    <div class="form-group">
+                        <label>Pesan Request</label>
+                        <textarea id="reqMessage" class="form-textarea" placeholder="Catatan tambahan..."></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn-submit">Kirim Request Film</button>
@@ -569,15 +551,15 @@ nav {
 
 <!-- PAGE 5: UPLOAD FILM -->
 <div id="page-upload" class="page">
-    <div class="section" style="padding-top: 15px;">
+    <div class="section" style="padding-top: 10px;">
         <div class="section-title">Upload Film Baru</div>
         <div class="form-card">
-            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Masukkan password admin <b>sleeptimeadmin</b> untuk mengunggah film baru.</p>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Password admin: <b>sleeptimeadmin</b></p>
             <form id="uploadForm" onsubmit="handleUpload(event)">
                 <div class="form-grid">
-                    <div class="form-group full">
-                        <label>Password Admin / Token Access</label>
-                        <input type="password" id="adminToken" class="form-input" placeholder="Masukkan password (sleeptimeadmin)" required>
+                    <div class="form-group">
+                        <label>Password Admin</label>
+                        <input type="password" id="adminToken" class="form-input" placeholder="Masukkan sleeptimeadmin" required>
                     </div>
                     <div class="form-group">
                         <label>Judul Film</label>
@@ -599,22 +581,22 @@ nav {
                     </div>
                     <div class="form-group">
                         <label>Rating (1.0 - 10.0)</label>
-                        <input type="text" id="upRating" class="form-input" placeholder="Contoh: 8.8" required>
+                        <input type="text" id="upRating" class="form-input" placeholder="8.8" required>
                     </div>
-                    <div class="form-group full">
-                        <label>URL Poster (Link Gambar)</label>
+                    <div class="form-group">
+                        <label>URL Poster (Gambar)</label>
                         <input type="url" id="upPoster" class="form-input" placeholder="https://..." required>
                     </div>
-                    <div class="form-group full">
-                        <label>URL Video Stream (Link MP4/WebM)</label>
-                        <input type="url" id="upVideo" class="form-input" placeholder="https://domain.com/video.mp4" required>
+                    <div class="form-group">
+                        <label>URL Video (MP4)</label>
+                        <input type="url" id="upVideo" class="form-input" placeholder="https://..." required>
                     </div>
-                    <div class="form-group full">
-                        <label>Sinopsis / Deskripsi Film</label>
-                        <textarea id="upDesc" class="form-textarea" placeholder="Tuliskan cerita singkat tentang film ini..." required></textarea>
+                    <div class="form-group">
+                        <label>Sinopsis Film</label>
+                        <textarea id="upDesc" class="form-textarea" placeholder="Cerita singkat..." required></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn-submit">Upload Film ke SLEEPTIME</button>
+                <button type="submit" class="btn-submit">Upload Film</button>
             </form>
             <div id="uploadStatus" class="status-msg"></div>
         </div>
@@ -637,7 +619,7 @@ nav {
 </div>
 
 <script>
-// Data Film dengan Gambar Cadangan (Fallback SVG) jika CDN Gambar Asli Terblokir
+// Data Film Menggunakan Tautan Gambar Lorem Picsum Yang Stabil Di HP
 const movies = [
     {
         id: 0,
@@ -646,8 +628,7 @@ const movies = [
         genre: "Sci-Fi",
         rating: "8.7",
         desc: "Petualangan fiksi ilmiah menembus batas dimensi waktu demi menemukan planet baru tempat tinggal manusia.",
-        poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
-        fallbackColor: "#1d2d50",
+        poster: "https://picsum.photos/id/1018/300/450",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
     },
     {
@@ -657,8 +638,7 @@ const movies = [
         genre: "Horror",
         rating: "8.8",
         desc: "Ketika kota mulai sepi di malam hari, rahasia kelam mulai meneror siapapun yang berada di luar rumah.",
-        poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",
-        fallbackColor: "#3a0007",
+        poster: "https://picsum.photos/id/1025/300/450",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
     },
     {
@@ -668,8 +648,7 @@ const movies = [
         genre: "Action",
         rating: "8.4",
         desc: "Kisah seorang peretas tingkat tinggi yang bertarung melawan kecerdasan buatan ilegal di kota futuristik.",
-        poster: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
-        fallbackColor: "#0f3460",
+        poster: "https://picsum.photos/id/1033/300/450",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
     },
     {
@@ -679,8 +658,7 @@ const movies = [
         genre: "Drama",
         rating: "8.9",
         desc: "Dokumenter fiksi tentang foto terakhir seorang fotografer perang sebelum menghilang secara misterius.",
-        poster: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80",
-        fallbackColor: "#2b2e4a",
+        poster: "https://picsum.photos/id/1043/300/450",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     }
 ];
@@ -688,31 +666,34 @@ const movies = [
 let watchHistory = [];
 let currentGenre = "All";
 
-// Pindah Halaman SPA (Fix untuk Browser HP & GitHub Pages)
-function switchPage(pageName, e) {
-    if (e && e.preventDefault) e.preventDefault();
+// Fungsi jika gambar gagal dimuat
+function onImgError(img, title) {
+    img.onerror = null;
+    const parent = img.parentElement;
+    if (parent) {
+        parent.innerHTML = `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#222; color:#fff; font-size:11px; font-weight:bold; text-align:center; padding:8px;">${title}</div>`;
+    }
+}
 
-    const targetPage = document.getElementById(`page-${pageName}`);
-    const targetNav = document.getElementById(`nav-${pageName}`);
+// Pindah Halaman SPA
+function switchPage(pageName) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
 
-    if (!targetPage) return;
+    const navs = document.querySelectorAll('.nav-links a');
+    navs.forEach(a => a.classList.remove('active'));
 
-    // Sembunyikan semua halaman
-    document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active');
-        p.style.display = 'none';
-    });
+    const targetPage = document.getElementById('page-' + pageName);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    }
 
-    // Reset status menu navbar
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const targetNav = document.getElementById('nav-' + pageName);
+    if (targetNav) {
+        targetNav.classList.add('active');
+    }
 
-    // Tampilkan halaman yang dituju
-    targetPage.classList.add('active');
-    targetPage.style.display = 'block';
-
-    if (targetNav) targetNav.classList.add('active');
-
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 }
 
 // Render Kartu Film
@@ -734,5 +715,40 @@ function renderMovies() {
 
         const cardHTML = `
             <div class="movie-card" onclick="playMovie(${m.id})">
-                <div class="poster-box" style="background-color: ${m.fallbackColor || '#222'};">
-                    <img src="${m.poster}" alt="${m.title}" loading="lazy" onerror="
+                <div class="poster-box">
+                    <img src="${m.poster}" alt="${m.title}" onerror="onImgError(this, '${m.title.replace(/'/g, "\\'")}')">
+                </div>
+                <div class="movie-card-info">
+                    <div class="movie-card-title">${m.title}</div>
+                    <div class="movie-card-meta">${m.year} • ${m.genre} • ★ ${m.rating}</div>
+                </div>
+            </div>
+        `;
+
+        homeHTML += cardHTML;
+
+        if (matchesGenre && matchesSearch) {
+            moviesHTML += cardHTML;
+        }
+    });
+
+    homeGrid.innerHTML = homeHTML;
+    moviesGrid.innerHTML = moviesHTML;
+}
+
+// Filter Genre
+function filterGenre(genre, element) {
+    currentGenre = genre;
+    document.querySelectorAll('.genre-tag').forEach(tag => tag.classList.remove('active'));
+    element.classList.add('active');
+    renderMovies();
+}
+
+// Filter Pencarian
+function filterMovies() {
+    renderMovies();
+}
+
+// Putar Film
+function playMovie(id) {
+    const movie = movies.find(m => m.i
