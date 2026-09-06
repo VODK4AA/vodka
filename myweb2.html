@@ -25,21 +25,20 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    height: 65px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4%;
+    padding: 0 15px;
     z-index: 1000;
-    background: rgba(8, 8, 8, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: #0d0d0d;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     cursor: pointer;
     user-select: none;
     flex-shrink: 0;
@@ -51,7 +50,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     list-style: none;
     overflow-x: auto;
     white-space: nowrap;
@@ -70,50 +69,51 @@ nav {
     font-size: 13px;
     font-weight: 600;
     transition: 0.2s;
-    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 4px;
     display: inline-block;
-    padding: 4px 8px;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: #fff;
+    background: rgba(255,255,255,0.1);
 }
 
 .search-box {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 20px;
     padding: 6px 12px;
     color: white;
     outline: none;
-    font-size: 12px;
-    width: 140px;
+    font-size: 11px;
+    width: 110px;
     flex-shrink: 0;
 }
 
 /* ================= VIEWS (PAGES) ================= */
 .page {
     display: none;
-    padding-top: 65px;
+    padding-top: 60px;
     min-height: 100vh;
 }
 
 .page.active {
-    display: block;
+    display: block !important;
 }
 
 /* ================= HOME VIEW ================= */
 .hero {
-    height: 420px;
+    height: 380px;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 30px 5%;
-    background: linear-gradient(0deg, #080808 10%, rgba(8,8,8,0.4) 60%, rgba(8,8,8,0.8) 100%),
-                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80") center/cover;
+    padding: 25px 5%;
+    background: linear-gradient(0deg, #080808 10%, rgba(8,8,8,0.5) 60%, rgba(8,8,8,0.8) 100%),
+                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80") center/cover #1a1a1a;
     border-radius: 0 0 16px 16px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .hero-content {
@@ -124,49 +124,45 @@ nav {
 .hero-badge {
     background: #e50914;
     color: white;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .hero h1 {
-    font-size: 34px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    margin-bottom: 8px;
     line-height: 1.1;
 }
 
 .hero p {
     color: #ccc;
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 15px;
 }
 
 .btn-play {
     background: #fff;
     color: #000;
     border: none;
-    padding: 10px 22px;
+    padding: 10px 20px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-play:hover {
-    background: #ddd;
+    font-size: 13px;
 }
 
 .section {
-    padding: 0 5% 40px;
+    padding: 0 4% 40px;
 }
 
 .section-title {
-    font-size: 18px;
-    margin-bottom: 16px;
+    font-size: 16px;
+    margin-bottom: 14px;
     font-weight: 700;
 }
 
@@ -175,8 +171,8 @@ nav {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
     scrollbar-width: none;
 }
 
@@ -185,7 +181,7 @@ nav {
 }
 
 .genre-tag {
-    padding: 8px 16px;
+    padding: 6px 14px;
     background: #141414;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 20px;
@@ -202,35 +198,39 @@ nav {
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
 }
 
 .movie-card {
-    background: #121212;
+    background: #141414;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-.movie-card:hover {
-    transform: translateY(-6px);
+.poster-box {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: #222;
+    position: relative;
+    overflow: hidden;
 }
 
 .movie-card img {
     width: 100%;
-    aspect-ratio: 2/3;
+    height: 100%;
     object-fit: cover;
     display: block;
 }
 
 .movie-card-info {
-    padding: 10px;
+    padding: 8px;
 }
 
 .movie-card-title {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
@@ -238,37 +238,37 @@ nav {
 }
 
 .movie-card-meta {
-    font-size: 11px;
-    color: #777;
-    margin-top: 4px;
+    font-size: 10px;
+    color: #888;
+    margin-top: 3px;
 }
 
-/* ================= ACCOUNT VIEW & FORM STYLES ================= */
+/* ================= ACCOUNT & FORM STYLES ================= */
 .profile-card {
     background: #121212;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    padding: 24px;
+    padding: 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .avatar {
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: #e50914;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .user-details h3 {
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -276,37 +276,37 @@ nav {
 
 .owner-badge {
     background: #e50914;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 8px;
     text-transform: uppercase;
     font-weight: bold;
 }
 
 .user-details p {
-    font-size: 12px;
+    font-size: 11px;
     color: #777;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .form-card {
     background: #121212;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 30px;
+    padding: 20px;
+    margin-bottom: 25px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 12px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
 }
 
 .form-group.full {
@@ -314,7 +314,7 @@ nav {
 }
 
 .form-group label {
-    font-size: 12px;
+    font-size: 11px;
     color: #aaa;
     font-weight: 600;
 }
@@ -323,72 +323,63 @@ nav {
     background: #1a1a1a;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 6px;
-    padding: 10px 14px;
+    padding: 8px 12px;
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     outline: none;
-}
-
-.form-input:focus, .form-textarea:focus {
-    border-color: #e50914;
 }
 
 .form-textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 70px;
 }
 
 .btn-submit {
     background: #e50914;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
     width: 100%;
-    transition: 0.2s;
-}
-
-.btn-submit:hover {
-    background: #b80710;
 }
 
 .status-msg {
-    margin-top: 12px;
-    font-size: 13px;
+    margin-top: 10px;
+    font-size: 12px;
     display: none;
 }
 
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .history-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     background: #121212;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 .history-item img {
-    width: 50px;
-    height: 70px;
+    width: 40px;
+    height: 55px;
     object-fit: cover;
     border-radius: 4px;
 }
 
 .history-info h4 {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .history-info p {
-    font-size: 11px;
+    font-size: 10px;
     color: #777;
     margin-top: 2px;
 }
@@ -397,12 +388,12 @@ nav {
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
     z-index: 2000;
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
 }
 
 .modal.active {
@@ -412,8 +403,8 @@ nav {
 .modal-content {
     background: #121212;
     width: 100%;
-    max-width: 750px;
-    border-radius: 12px;
+    max-width: 700px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255,255,255,0.1);
@@ -422,13 +413,13 @@ nav {
 .modal-close {
     position: absolute;
     top: 10px;
-    right: 15px;
-    background: rgba(0,0,0,0.6);
+    right: 12px;
+    background: rgba(0,0,0,0.7);
     border: none;
     color: white;
-    font-size: 20px;
-    width: 32px;
-    height: 32px;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
@@ -446,60 +437,30 @@ nav {
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 15px;
 }
 
 .modal-title {
-    font-size: 20px;
-    margin-bottom: 6px;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
 .modal-meta {
-    font-size: 12px;
+    font-size: 11px;
     color: #aaa;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .modal-desc {
-    font-size: 13px;
+    font-size: 12px;
     color: #ccc;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
-/* ================= RESPONSIVE HP ================= */
-@media (max-width: 768px) {
-    nav {
-        gap: 10px;
-        padding: 0 3%;
-    }
-
-    .logo {
-        font-size: 16px;
-    }
-
-    .nav-links a {
-        font-size: 11px;
-        padding: 2px 4px;
-    }
-
-    .search-box {
-        width: 90px;
-        font-size: 10px;
-    }
-
-    .hero h1 {
-        font-size: 24px;
-    }
-
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
+@media (max-width: 600px) {
     .form-grid {
         grid-template-columns: 1fr;
     }
-
     .form-group.full {
         grid-column: span 1;
     }
@@ -510,14 +471,14 @@ nav {
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo" onclick="switchPage('home')">SLEEP<span>TIME</span></div>
+    <div class="logo" onclick="switchPage('home', event)">SLEEP<span>TIME</span></div>
     
     <ul class="nav-links">
-        <li><a id="nav-home" class="active" href="javascript:void(0)" onclick="switchPage('home')">Home</a></li>
-        <li><a id="nav-movies" href="javascript:void(0)" onclick="switchPage('movies')">Movies</a></li>
-        <li><a id="nav-account" href="javascript:void(0)" onclick="switchPage('account')">Account</a></li>
-        <li><a id="nav-request" href="javascript:void(0)" onclick="switchPage('request')">Request</a></li>
-        <li><a id="nav-upload" href="javascript:void(0)" onclick="switchPage('upload')">Upload</a></li>
+        <li><a id="nav-home" class="active" href="#" onclick="switchPage('home', event)">Home</a></li>
+        <li><a id="nav-movies" href="#" onclick="switchPage('movies', event)">Movies</a></li>
+        <li><a id="nav-account" href="#" onclick="switchPage('account', event)">Account</a></li>
+        <li><a id="nav-request" href="#" onclick="switchPage('request', event)">Request</a></li>
+        <li><a id="nav-upload" href="#" onclick="switchPage('upload', event)">Upload</a></li>
     </ul>
 
     <input type="text" class="search-box" id="searchInput" placeholder="Cari film..." oninput="filterMovies()">
@@ -542,7 +503,7 @@ nav {
 
 <!-- PAGE 2: MOVIES -->
 <div id="page-movies" class="page">
-    <div class="section" style="padding-top: 20px;">
+    <div class="section" style="padding-top: 15px;">
         <div class="genres">
             <div class="genre-tag active" onclick="filterGenre('All', this)">All</div>
             <div class="genre-tag" onclick="filterGenre('Sci-Fi', this)">Sci-Fi</div>
@@ -558,7 +519,7 @@ nav {
 
 <!-- PAGE 3: ACCOUNT -->
 <div id="page-account" class="page">
-    <div class="section" style="padding-top: 20px;">
+    <div class="section" style="padding-top: 15px;">
         <div class="profile-card">
             <div class="avatar">V</div>
             <div class="user-details">
@@ -576,10 +537,10 @@ nav {
 
 <!-- PAGE 4: REQUEST FILM -->
 <div id="page-request" class="page">
-    <div class="section" style="padding-top: 20px;">
+    <div class="section" style="padding-top: 15px;">
         <div class="section-title">Request Film</div>
         <div class="form-card">
-            <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Film favoritmu belum ada di SLEEPTIME? Kirimkan permintaanmu di bawah ini!</p>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Film favoritmu belum ada di SLEEPTIME? Kirimkan permintaanmu di bawah ini!</p>
             <form id="requestForm" onsubmit="handleRequest(event)">
                 <div class="form-grid">
                     <div class="form-group">
@@ -608,10 +569,10 @@ nav {
 
 <!-- PAGE 5: UPLOAD FILM -->
 <div id="page-upload" class="page">
-    <div class="section" style="padding-top: 20px;">
+    <div class="section" style="padding-top: 15px;">
         <div class="section-title">Upload Film Baru</div>
         <div class="form-card">
-            <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Masukkan password admin <b>sleeptimeadmin</b> untuk mengunggah film baru.</p>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Masukkan password admin <b>sleeptimeadmin</b> untuk mengunggah film baru.</p>
             <form id="uploadForm" onsubmit="handleUpload(event)">
                 <div class="form-grid">
                     <div class="form-group full">
@@ -642,7 +603,7 @@ nav {
                     </div>
                     <div class="form-group full">
                         <label>URL Poster (Link Gambar)</label>
-                        <input type="url" id="upPoster" class="form-input" placeholder="https://images.unsplash.com/..." required>
+                        <input type="url" id="upPoster" class="form-input" placeholder="https://..." required>
                     </div>
                     <div class="form-group full">
                         <label>URL Video Stream (Link MP4/WebM)</label>
@@ -676,7 +637,7 @@ nav {
 </div>
 
 <script>
-// Data Film
+// Data Film dengan Gambar Cadangan (Fallback SVG) jika CDN Gambar Asli Terblokir
 const movies = [
     {
         id: 0,
@@ -686,6 +647,7 @@ const movies = [
         rating: "8.7",
         desc: "Petualangan fiksi ilmiah menembus batas dimensi waktu demi menemukan planet baru tempat tinggal manusia.",
         poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+        fallbackColor: "#1d2d50",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
     },
     {
@@ -696,6 +658,7 @@ const movies = [
         rating: "8.8",
         desc: "Ketika kota mulai sepi di malam hari, rahasia kelam mulai meneror siapapun yang berada di luar rumah.",
         poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",
+        fallbackColor: "#3a0007",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
     },
     {
@@ -706,6 +669,7 @@ const movies = [
         rating: "8.4",
         desc: "Kisah seorang peretas tingkat tinggi yang bertarung melawan kecerdasan buatan ilegal di kota futuristik.",
         poster: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80",
+        fallbackColor: "#0f3460",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
     },
     {
@@ -716,6 +680,7 @@ const movies = [
         rating: "8.9",
         desc: "Dokumenter fiksi tentang foto terakhir seorang fotografer perang sebelum menghilang secara misterius.",
         poster: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80",
+        fallbackColor: "#2b2e4a",
         videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
     }
 ];
@@ -723,17 +688,28 @@ const movies = [
 let watchHistory = [];
 let currentGenre = "All";
 
-// Pindah Halaman SPA
-function switchPage(pageName) {
+// Pindah Halaman SPA (Fix untuk Browser HP & GitHub Pages)
+function switchPage(pageName, e) {
+    if (e && e.preventDefault) e.preventDefault();
+
     const targetPage = document.getElementById(`page-${pageName}`);
     const targetNav = document.getElementById(`nav-${pageName}`);
-    
+
     if (!targetPage) return;
 
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Sembunyikan semua halaman
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+    });
+
+    // Reset status menu navbar
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
+    // Tampilkan halaman yang dituju
     targetPage.classList.add('active');
+    targetPage.style.display = 'block';
+
     if (targetNav) targetNav.classList.add('active');
 
     window.scrollTo(0,0);
@@ -743,7 +719,7 @@ function switchPage(pageName) {
 function renderMovies() {
     const homeGrid = document.getElementById('homeRecommendedGrid');
     const moviesGrid = document.getElementById('moviesGrid');
-    
+
     if (!homeGrid || !moviesGrid) return;
 
     const searchElem = document.getElementById('searchInput');
@@ -758,4 +734,5 @@ function renderMovies() {
 
         const cardHTML = `
             <div class="movie-card" onclick="playMovie(${m.id})">
-                <img src="${m.poster}" alt="${m.tit
+                <div class="poster-box" style="background-color: ${m.fallbackColor || '#222'};">
+                    <img src="${m.poster}" alt="${m.title}" loading="lazy" onerror="
