@@ -787,4 +787,11 @@ function playMovie(id) {
 }
 
 function closeModal() {
-    const modal = document.getElementById('movieModa
+    const modal = document.getElementById('movieModal');
+    const player = document.getElementById('videoPlayer');
+    player.pause();
+    player.src = '';
+    modal.classList.remove('active');
+    }
+
+    
