@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLEEPTIME</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080808;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0,0,0,.95), transparent);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.logo span {
+    color: #e50914;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.search {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: 9px 16px;
+    color: white;
+    outline: none;
+    width: 170px;
+}
+
+/* ================= HERO ================= */
+.hero {
+    height: 700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 7%;
+    background:
+        linear-gradient(90deg, #080808 5%, rgba(8,8,8,.85) 35%, rgba(8,8,8,.2) 75%, #080808 100%),
+        linear-gradient(0deg, #080808, transparent 40%),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 570px;
+    margin-top: 60px;
+}
+
+.tag {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 82px);
+    line-height: .95;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #bbb;
+    line-height: 1.7;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    border: none;
+    padding: 13px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.watch {
+    background: white;
+    color: black;
+}
+
+.info {
+    background: rgba(255,255,255,.12);
+    color: white;
+}
+
+/* ================= CONTENT ================= */
+main {
+    padding: 0 6% 80px;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    font-size: 22px;
+}
+
+/* ================= GENRE ================= */
+.genres {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.genres::-webkit-scrollbar {
+    display: none;
+}
+
+.genre {
+    padding: 11px 20px;
+    border-radius: 20px;
+    background: #151515;
+    color: #aaa;
+    border: 1px solid #242424;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.genre:hover,
+.genre.active {
+    background: white;
+    color: black;
+}
+
+/* ================= MOVIES ================= */
+.movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.movie {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #111;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.movie:hover {
+    transform: translateY(-8px);
+}
+
+.movie img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 45px 13px 13px;
+    background: linear-gradient(transparent, rgba(0,0,0,.95));
+}
+
+.movie-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.movie-meta {
+    color: #aaa;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* ================= UPLOAD ================= */
+.upload-box {
+    background: linear-gradient(145deg, #111, #0b0b0b);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 35px;
+}
+
+.upload-area {
+    border: 2px dashed #333;
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: .3s;
+}
+
+.upload-area:hover {
+    border-color: #777;
+    background: rgba(255,255,255,.02);
+}
+
+.upload-icon {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.upload-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* ================= REQUEST & FORM ================= */
+.request-box {
+    background: #101010;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 35px;
+    max-width: 750px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    background: #080808;
+    border: 1px solid #292929;
+    color: white;
+    padding: 13px 14px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #666;
+}
+
+.form-textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: white;
+    color: black;
+}
+
+.status-msg {
+    display: none;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* ================= MODAL VIDEO PLAYER ================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 900px;
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: black;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    border-top: 1px solid #181818;
+    padding: 35px 6%;
+    color: #555;
+    font-size: 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 900px) {
+    .movies {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .nav-links {
+        display: none;
+    }
+    .upload-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 550px) {
+    nav {
+        padding: 0 5%;
+    }
+    .search {
+        width: 120px;
+    }
+    .hero {
+        height: 600px;
+        padding: 0 5%;
+    }
+    .hero h1 {
+        font-size: 50px;
+    }
+    main {
+        padding: 0 5% 60px;
+    }
+    .movies {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .upload-box,
+    .request-box {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">SLEEP<span>TIME</span></div>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#movies">Movies</a></li>
+        <li><a href="#upload">Upload</a></li>
+        <li><a href="#request">Request</a></li>
+    </ul>
+    <input class="search" id="searchInput" type="text" placeholder="Search...">
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">FEATURED MOVIE • 2026</div>
+        <h1 id="heroTitle">THE<br>NIGHT</h1>
+        <p class="description" id="heroDesc">
+            When the city falls silent, one man discovers a mystery hidden beneath the lights. A cinematic journey through darkness, memory and the unknown.
+        </p>
+        <div class="buttons">
+            <button class="watch" id="heroWatchBtn">▶ Watch Now</button>
+            <button class="info">＋ My List</button>
+        </div>
+    </div>
+</section>
+
+<main>
+
+<!-- GENRES -->
+<section class="section">
+    <div class="section-title">
+        <h2>Browse by Genre</h2>
+    </div>
+    <div class="genres" id="genreContainer">
+        <div class="genre active" data-genre="All">All</div>
+        <div class="genre" data-genre="Action">Action</div>
+        <div class="genre" data-genre="Drama">Drama</div>
+        <div class="genre" data-genre="Thriller">Thriller</div>
+        <div class="genre" data-genre="Sci-Fi">Sci-Fi</div>
+        <div class="genre" data-genre="Horror">Horror</div>
+        <div class="genre" data-genre="Animation">Animation</div>
+        <div class="genre" data-genre="Adventure">Adventure</div>
+    </div>
+</section>
+
+<!-- MOVIES -->
+<section class="section" id="movies">
+    <div class="section-title">
+        <h2>Trending Now</h2>
+    </div>
+    <div class="movies" id="movieList">
+        <!-- Film dari API backend dipasang di sini -->
+    </div>
+</section>
+
+<!-- UPLOAD -->
+<section class="section" id="upload">
+    <div class="section-title">
+        <h2>Upload Movie</h2>
+    </div>
+    <div class="upload-box">
+        <form id="uploadForm">
+            <div class="form-group">
+                <label>Admin Access Key / Token</label>
+                <input class="form-input" type="password" id="adminToken" placeholder="Masukkan token rahasia admin" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Movie Title</label>
+                <input class="form-input" type="text" id="upTitle" placeholder="Judul film" required>
+            </div>
+
+            <div class="upload-grid">
+                <div class="form-group">
+                    <label>Year</label>
+                    <input class="form-input" type="number" id="upYear" placeholder="2026" required>
+                </div>
+                <div class="form-group">
+                    <label>Genre</label>
+                    <select class="form-select" id="upGenre">
+                        <option>Action</option>
+                        <option>Drama</option>
+                        <option>Comedy</option>
+                        <option>Horror</option>
+                        <option>Thriller</option>
+                        <option>Sci-Fi</option>
+                        <option>Animation</option>
+                        <option>Adventure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <input class="form-input" type="text" id="upRating" placeholder="8.5" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-textarea" id="upDesc" placeholder="Deskripsi film..." required></textarea>
+            </div>
+
+            <div class="upload-area">
+                <div class="upload-icon">🎬</div>
+                <h3>Files & Links</h3>
+                <div class="form-group" style="margin-top:15px; text-align:left;">
+                    <label>Poster Image URL</label>
+                    <input class="form-input" type="url" id="upPoster" placeholder="https://..." required>
+                </div>
+                <div class="form-group" style="text-align:left;">
+                    <label>Video Stream / File URL</label>
+                    <input class="form-input" type="url" id="upVideo" placeholder="https://... .mp4" required>
+                </div>
+                <button type="submit" class="submit-btn" style="width:100%; padding:14px; margin-top:10px;">🎬 UPLOAD TO SLEEPTIME</button>
+            </div>
+            <div class="status-msg" id="uploadStatus"></div>
+        </form>
+    </div>
+</section>
+
+<!-- REQUEST -->
+<section class="section" id="request">
+    <div class="section-title">
+        <h2>Request a Movie</h2>
+    </div>
+    <div class="request-box">
+        <form id="requestForm">
+            <div class="form-group">
+                <label>Movie Title</label>
+                <input class="form-input" type="text" id="reqTitle" placeholder="Contoh: Interstellar" required>
+            </div>
+            <div class="form-group">
+                <label>Release Year</label>
+                <input class="form-input" type="number" id="reqYear" placeholder="2026">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <select class="form-select" id="reqGenre">
+                    <option>Action</option>
+                    <option>Drama</option>
+                    <option>Comedy</option>
+                    <option>Horror</option>
+                    <option>Thriller</option>
+                    <option>Sci-Fi</option>
+                    <option>Animation</option>
+                    <option>Adventure</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-textarea" id="reqMessage" placeholder="Kenapa film ini ingin kamu request?"></textarea>
+            </div>
+            <button class="submit-btn" type="submit">Send Request →</button>
+            <div class="status-msg" id="requestStatus"></div>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- MODAL PLAYER -->
+<div class="modal-overlay" id="videoModal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <video class="modal-video" id="player" controls autoplay></video>
+    </div>
+</div>
+
+<footer>
+    © 2026 SLEEPTIME • A cinematic movie platform
+</footer>
+
+<script>
+// API Endpoint Backend
+const API_BASE_URL = "https://sleptime-api.onrender.com/api";
+
+let moviesData = [];
+let selectedGenre = "All";
+
+// DOM Elements
+const movieList = document.getElementById("movieList");
+const searchInput = document.getElementById("searchInput");
+const videoModal = document.getElementById("videoModal");
+const closeModal = document.getElementById("closeModal");
+const player = document.getElementById("player");
+const heroWatchBtn = document.getElementById("heroWatchBtn");
+
+// 1. Fetch movies dari backend API
+async function loadMovies() {
+    try {
+        const res = await fetch(`${API_BASE_URL}/movies`);
+        if (!res.ok) throw new Error("Gagal ambil data");
+        moviesData = await res.json();
+        renderMovies();
+    } catch (err) {
+        console.warn("Backend belum aktif/error, menggunakan fallback data lokal.");
+        moviesData = [
+            {
+                title: "The Night",
+                year: "2026",
+                genre: "Thriller",
+                rating: "8.8",
+                poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",
+                videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            },
+            {
+                title: "Lost Horizon",
+                year: "2026",
+                genre: "Sci-Fi",
+                rating: "8.7",
+                poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+                videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            }
+        ];
+        renderMovies();
+    }
+}
+
+// 2. Render cards film
+function renderMovies() {
+    movieList.innerHTML = "";
+    const keyword = searchInput.value.toLowerCase();
+
+    const filtered = moviesData.filter(m => {
+        const matchGenre = selectedGenre === "All" || m.genre.toLowerCase() === selectedGenre.toLowerCase();
+        const matchSearch = m.title.toLowerCase().includes(keyword);
+        return matchGenre && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+        movieList.innerHTML = `<div class="empty-state">Tidak ada film ditemukan.</div>`;
+        return;
+    }
+
+    filtered.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "movie";
+        card.innerHTML = `
+            <img src="${m.poster}" alt="${m.title}">
+            <div class="movie-info">
+                <div class="movie-title">${m.title}</div>
+                <div class="movie-meta">${m.year} • ${m.genre} • ★ ${m.rating}</div>
+            </div>
+        `;
+        card.addEventListener("click", () => openVideo(m.videoUrl));
+        movieList.appendChild(card);
+    });
+}
+
+// 3. Play Video Modal
+function openVideo(url) {
+    if (!url) return alert("URL Video tidak valid");
+    player.src = url;
+    videoModal.style.display = "flex";
+    player.play();
+}
+
+closeModal.addEventListener("click", () => {
+    videoModal.style.display = "none";
+    player.pause();
+    player.src = "";
+});
+
+heroWatchBtn.addEventListener("click", () => {
+    if (moviesData.length > 0) openVideo(moviesData[0].videoUrl);
+});
+
+// 4. Search & Genre Filter
+searchInput.addEventListener("input", renderMovies);
+
+document.querySelectorAll(".genre").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".genre").forEach(g => g.classList.remove("active"));
+        btn.classList.add("active");
+        selectedGenre = btn.dataset.genre;
+        renderMovies();
+    });
+});
+
+// 5. Upload Form (Diisi Admin)
+document.getElementById("uploadForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const status = document.getElementById("uploadStatus");
+    status.style.display = "block";
+    status.style.color = "#aaa";
+    status.textContent = "Mengunggah...";
+
+    const token = document.getElementById("adminToken").value;
+    const payload = {
+        title: document.getElementById("upTitle").value,
+        year: document.getElementById("upYear").value,
+        genre: document.getElementById("upGenre").value,
+        rating: document.getElementById("upRating").value,
+        description: document.getElementById("upDesc").value,
+        poster: document.getElementById("upPoster").value,
+        videoUrl: document.getElementById("upVideo").value
+    };
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/admin/upload`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (res.status === 401 || res.status === 403) {
+            throw new Error("Akses ditolak! Token admin salah.");
+        }
+        if (!res.ok) throw new Error("Gagal mengunggah film.");
+
+        status.style.color = "#4CAF50";
+        status.textContent = "✓ Film berhasil diunggah ke SLEEPTIME!";
+        this.reset();
+        loadMovies();
+    } catch (err) {
+        status.style.color = "#e50914";
+        status.textContent = "✕ " + err.message;
+    }
+});
+
+// 6. Request Form
+document.getElementById("requestForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const status = document.getElementById("requestStatus");
+    status.style.display = "block";
+    status.style.color = "#aaa";
+    status.textContent = "Mengirim...";
+
+    const payload = {
+        title: document.getElementById("reqTitle").value,
+        year: document.getElementById("reqYear").value,
+        genre: document.getElementById("reqGenre").value,
+        message: document.getElementById("reqMessage").value
+    };
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/request`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error("Gagal mengirim request.");
+
+        status.style.color = "#4CAF50";
+        status.textContent = "✓ Request berhasil dikirim.";
+        this.reset();
+    } catch (err) {
+        status.style.color = "#e50914";
+        status.textContent = "✕ " + err.message;
+    }
+});
+
+// Initial Load
+loadMovies();
+</script>
+
+</body>
+  </html>
+  
