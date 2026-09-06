@@ -23,24 +23,26 @@ body {
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     height: 65px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
-    z-index: 100;
-    background: rgba(8, 8, 8, 0.9);
+    padding: 0 4%;
+    z-index: 1000;
+    background: rgba(8, 8, 8, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
     letter-spacing: 2px;
     cursor: pointer;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .logo span {
@@ -49,17 +51,28 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     list-style: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 5px 0;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-links a {
     color: #aaa;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     transition: 0.2s;
     cursor: pointer;
+    display: inline-block;
+    padding: 4px 8px;
 }
 
 .nav-links a:hover,
@@ -71,11 +84,12 @@ nav {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 20px;
-    padding: 7px 14px;
+    padding: 6px 12px;
     color: white;
     outline: none;
-    font-size: 13px;
-    width: 160px;
+    font-size: 12px;
+    width: 140px;
+    flex-shrink: 0;
 }
 
 /* ================= VIEWS (PAGES) ================= */
@@ -91,19 +105,20 @@ nav {
 
 /* ================= HOME VIEW ================= */
 .hero {
-    height: 480px;
+    height: 420px;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 40px 5%;
+    padding: 30px 5%;
     background: linear-gradient(0deg, #080808 10%, rgba(8,8,8,0.4) 60%, rgba(8,8,8,0.8) 100%),
                 url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80") center/cover;
     border-radius: 0 0 16px 16px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .hero-content {
     max-width: 550px;
+    z-index: 2;
 }
 
 .hero-badge {
@@ -118,7 +133,7 @@ nav {
 }
 
 .hero h1 {
-    font-size: 38px;
+    font-size: 34px;
     margin-bottom: 10px;
     line-height: 1.1;
 }
@@ -187,7 +202,7 @@ nav {
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 16px;
 }
 
@@ -383,7 +398,7 @@ nav {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
-    z-index: 200;
+    z-index: 2000;
     display: none;
     align-items: center;
     justify-content: center;
@@ -452,43 +467,28 @@ nav {
 }
 
 /* ================= RESPONSIVE HP ================= */
-@media (max-width: 900px) {
-    .movie-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     nav {
+        gap: 10px;
         padding: 0 3%;
     }
-    
+
     .logo {
         font-size: 16px;
-        letter-spacing: 1px;
-    }
-
-    .nav-links {
-        gap: 8px;
     }
 
     .nav-links a {
-        font-size: 10px;
+        font-size: 11px;
+        padding: 2px 4px;
     }
 
     .search-box {
-        width: 70px;
-        font-size: 9px;
-        padding: 4px 8px;
-    }
-
-    .hero {
-        height: 360px;
-        padding: 20px 4%;
+        width: 90px;
+        font-size: 10px;
     }
 
     .hero h1 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .movie-grid {
@@ -503,10 +503,6 @@ nav {
     .form-group.full {
         grid-column: span 1;
     }
-
-    .section {
-        padding: 0 4% 30px;
-    }
 }
 </style>
 </head>
@@ -517,11 +513,11 @@ nav {
     <div class="logo" onclick="switchPage('home')">SLEEP<span>TIME</span></div>
     
     <ul class="nav-links">
-        <li><a id="nav-home" class="active" onclick="switchPage('home')">Home</a></li>
-        <li><a id="nav-movies" onclick="switchPage('movies')">Movies</a></li>
-        <li><a id="nav-account" onclick="switchPage('account')">Account</a></li>
-        <li><a id="nav-request" onclick="switchPage('request')">Request</a></li>
-        <li><a id="nav-upload" onclick="switchPage('upload')">Upload</a></li>
+        <li><a id="nav-home" class="active" href="javascript:void(0)" onclick="switchPage('home')">Home</a></li>
+        <li><a id="nav-movies" href="javascript:void(0)" onclick="switchPage('movies')">Movies</a></li>
+        <li><a id="nav-account" href="javascript:void(0)" onclick="switchPage('account')">Account</a></li>
+        <li><a id="nav-request" href="javascript:void(0)" onclick="switchPage('request')">Request</a></li>
+        <li><a id="nav-upload" href="javascript:void(0)" onclick="switchPage('upload')">Upload</a></li>
     </ul>
 
     <input type="text" class="search-box" id="searchInput" placeholder="Cari film..." oninput="filterMovies()">
@@ -578,7 +574,7 @@ nav {
     </div>
 </div>
 
-<!-- PAGE 4: REQUEST FILM (UNTUK SEMUA PENGGUNA) -->
+<!-- PAGE 4: REQUEST FILM -->
 <div id="page-request" class="page">
     <div class="section" style="padding-top: 20px;">
         <div class="section-title">Request Film</div>
@@ -610,7 +606,7 @@ nav {
     </div>
 </div>
 
-<!-- PAGE 5: UPLOAD FILM (KHUSUS DENGAN PASSWORD SLEEPTIMEADMIN) -->
+<!-- PAGE 5: UPLOAD FILM -->
 <div id="page-upload" class="page">
     <div class="section" style="padding-top: 20px;">
         <div class="section-title">Upload Film Baru</div>
@@ -680,7 +676,7 @@ nav {
 </div>
 
 <script>
-// Data Film Sampel
+// Data Film
 const movies = [
     {
         id: 0,
@@ -729,11 +725,16 @@ let currentGenre = "All";
 
 // Pindah Halaman SPA
 function switchPage(pageName) {
+    const targetPage = document.getElementById(`page-${pageName}`);
+    const targetNav = document.getElementById(`nav-${pageName}`);
+    
+    if (!targetPage) return;
+
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
-    document.getElementById(`page-${pageName}`).classList.add('active');
-    document.getElementById(`nav-${pageName}`).classList.add('active');
+    targetPage.classList.add('active');
+    if (targetNav) targetNav.classList.add('active');
 
     window.scrollTo(0,0);
 }
@@ -743,10 +744,13 @@ function renderMovies() {
     const homeGrid = document.getElementById('homeRecommendedGrid');
     const moviesGrid = document.getElementById('moviesGrid');
     
-    homeGrid.innerHTML = '';
-    moviesGrid.innerHTML = '';
+    if (!homeGrid || !moviesGrid) return;
 
-    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    const searchElem = document.getElementById('searchInput');
+    const keyword = searchElem ? searchElem.value.toLowerCase() : '';
+
+    let homeHTML = '';
+    let moviesHTML = '';
 
     movies.forEach(m => {
         const matchesGenre = currentGenre === "All" || m.genre === currentGenre;
@@ -754,13 +758,4 @@ function renderMovies() {
 
         const cardHTML = `
             <div class="movie-card" onclick="playMovie(${m.id})">
-                <img src="${m.poster}" alt="${m.title}">
-                <div class="movie-card-info">
-                    <div class="movie-card-title">${m.title}</div>
-                    <div class="movie-card-meta">${m.year} • ${m.genre} • ★ ${m.rating}</div>
-                </div>
-            </div>
-        `;
-
-        // Render ke Home (Rekomendasi)
-  
+                <img src="${m.poster}" alt="${m.tit
